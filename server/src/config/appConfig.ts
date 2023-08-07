@@ -1,11 +1,11 @@
 import { Express } from "express";
 import { Mongoose } from "mongoose";
 
- export default function appConfig(app: Express, mongoose: Mongoose) {
+ export default async function appConfig(app: Express, mongoose: Mongoose) {
   try {
-    mongoose
+    await mongoose
       .connect(
-        process.env.MONGODB_TOKEN_URL as string
+        'mongodb+srv://ChrisMwiti:P8LrLTTPci5nnZcU@cluster0.ax7kkcq.mongodb.net/?retryWrites=true&w=majority'
       )
       .then(() => {
         app.listen(process.env.PORT, () => {

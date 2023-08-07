@@ -7,14 +7,20 @@ const AlbumSchema = new Schema<AlbumInterface>({
     type: String,
     required: true,
   },
-  artists: {
-    type: [String || Number] || String || Number,
-    required: true,
-  },
-  genre: {
-    type: String,
-    required: true,
-  },
+  artists:[
+    {
+      type: [Schema.Types.ObjectId],
+      ref: 'Artists',
+      required: true
+    }
+  ],
+  genre: [
+    {
+      type: [Schema.Types.ObjectId],
+      ref: 'Genres',
+      required: true
+    }
+  ],
   duration: {
     type: String,
     required: true,
@@ -23,14 +29,14 @@ const AlbumSchema = new Schema<AlbumInterface>({
     type: [SongsSchemaProtoType],
     required: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
+  file_path:{
+    type: String,
+    required: true
   },
-  modifiedAt:{
-    type: Date
+  art_path:{
+    type: String
   }
-});
+}, {timestamps: true});
 
 const AlbumModel = model<AlbumInterface>('Albums', AlbumSchema);
 

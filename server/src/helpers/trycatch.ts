@@ -5,9 +5,11 @@ async function trycatch<DataType>(func: Function){
         const result:DataType = await func();
         data = result;
     }catch(error){
-        console.log(err);
+        console.log(error);
         err = error
     }
 
     return {data,err}
 }
+
+export default trycatch

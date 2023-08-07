@@ -5,15 +5,8 @@ const GenresSchema = new Schema<GenreInterface>({
     genre:{
         type: String,
         required: true
-    },
-    createdAt:{
-        type: Date,
-        default: Date.now
-    },
-    modifiedAt:{
-        type: Date
     }
-})
+}, {timestamps: true})
 
 const GenresModel = model<GenreInterface>('Genres', GenresSchema);
 

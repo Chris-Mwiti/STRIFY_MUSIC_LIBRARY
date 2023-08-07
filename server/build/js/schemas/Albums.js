@@ -7,14 +7,20 @@ const AlbumSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    artists: {
-        type: [String || Number] || String || Number,
-        required: true,
-    },
-    genre: {
-        type: String,
-        required: true,
-    },
+    artists: [
+        {
+            type: [mongoose_1.Schema.Types.ObjectId],
+            ref: 'Artists',
+            required: true
+        }
+    ],
+    genre: [
+        {
+            type: [mongoose_1.Schema.Types.ObjectId],
+            ref: 'Genres',
+            required: true
+        }
+    ],
     duration: {
         type: String,
         required: true,
@@ -23,13 +29,13 @@ const AlbumSchema = new mongoose_1.Schema({
         type: [Songs_1.SongsSchemaProtoType],
         required: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
+    file_path: {
+        type: String,
+        required: true
     },
-    modifiedAt: {
-        type: Date
+    art_path: {
+        type: String
     }
-});
+}, { timestamps: true });
 const AlbumModel = (0, mongoose_1.model)('Albums', AlbumSchema);
 exports.default = AlbumModel;

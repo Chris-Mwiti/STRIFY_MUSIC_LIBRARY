@@ -1,4 +1,4 @@
-type ArtistsType = (string | number)[] | string | number;
+type ArtistsType = (string)[] | string;
 
 interface ArtistsInterface {
     name: string;
@@ -9,16 +9,12 @@ interface ArtistsInterface {
     age: number;
     label: string;
     bio: string;
-    createdAt: Date;
-    modifiedAt: Date;
 }
 
 interface RecordLabelInterface {
     name: string;
     location: string;
     directorsName: string | string[];
-    createdAt: Date;
-    modifiedAt: Date;
 }
 
 interface SongsInterface {
@@ -27,14 +23,12 @@ interface SongsInterface {
     genre: string;
     duration: string;
     label: string;
-    createdAt: Date;
-    modifiedAt: Date;
+    file_path: string;
+    art_path: string;
 }
 
 interface GenreInterface {
     genre: string;
-    createdAt: Date;
-    modifiedAt: Date;
 }
 
 interface AlbumInterface {
@@ -43,8 +37,8 @@ interface AlbumInterface {
     genre: string;
     duration: string;
     songs: SongsInterface[];
-    createdAt: Date;
-    modifiedAt: Date;
+    file_path: string;
+    art_path: string;
 }
 
 interface PlaylistInterface { 
@@ -52,8 +46,8 @@ interface PlaylistInterface {
     duration: string;
     description: string;
     songs: SongsInterface[] | SongsInterface;
-    createdAt: Date;
-    modifiedAt: Date;
+    file_path: string;
+    art_path: string;
 }
 
 export {ArtistsInterface,SongsInterface,GenreInterface,AlbumInterface,PlaylistInterface, RecordLabelInterface}

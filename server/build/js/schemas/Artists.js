@@ -8,7 +8,8 @@ const ArtistsShema = new mongoose_1.Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -16,11 +17,21 @@ const ArtistsShema = new mongoose_1.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        validate: {
+            validator: (email) => email.includes('@') && email.includes('.'),
+            message: ({ value }) => `${value} is not a valid email`
+        }
     },
     phone: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        validate: {
+            validator: (phone) => phone.length == 10,
+            message: ({ value }) => `${value} is not a valid phone number`
+        }
     },
     age: {
         type: Number,
@@ -32,14 +43,7 @@ const ArtistsShema = new mongoose_1.Schema({
     },
     bio: {
         type: String
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    modifiedAt: {
-        type: Date
     }
-});
+}, { timestamps: true });
 const ArtistModel = (0, mongoose_1.model)('Artists', ArtistsShema);
 exports.default = ArtistModel;

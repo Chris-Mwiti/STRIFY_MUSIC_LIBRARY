@@ -5,14 +5,7 @@ const GenresSchema = new mongoose_1.Schema({
     genre: {
         type: String,
         required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    modifiedAt: {
-        type: Date
     }
-});
+}, { timestamps: true });
 const GenresModel = (0, mongoose_1.model)('Genres', GenresSchema);
 exports.default = GenresModel;

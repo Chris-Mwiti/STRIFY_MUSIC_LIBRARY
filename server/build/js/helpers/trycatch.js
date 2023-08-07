@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 function trycatch(func) {
     return __awaiter(this, void 0, void 0, function* () {
         let data = null;
@@ -17,9 +18,10 @@ function trycatch(func) {
             data = result;
         }
         catch (error) {
-            console.log(err);
+            console.log(error);
             err = error;
         }
         return { data, err };
     });
 }
+exports.default = trycatch;

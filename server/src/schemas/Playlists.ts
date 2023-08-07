@@ -15,17 +15,10 @@ const PlayListSchema = new Schema<PlaylistInterface>({
         type: String
     },
     songs:{
-        type: SongsSchemaProtoType || [SongsSchemaProtoType],
+        type:[SongsSchemaProtoType],
         required: true
-    },
-    createdAt:{
-        type: Date,
-        default: Date.now
-    },
-    modifiedAt:{
-        type: Date
     }
-})
+}, {timestamps: true})
 
 const PlayListModel = model<PlaylistInterface>('Playlists', PlayListSchema);
 

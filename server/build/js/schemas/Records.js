@@ -4,23 +4,17 @@ const mongoose_1 = require("mongoose");
 const RecordLabelSchema = new mongoose_1.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     location: {
         type: String,
         required: true
     },
     directorsName: {
-        type: [String] || String,
+        type: [String],
         required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    modifiedAt: {
-        type: Date
     }
-});
+}, { timestamps: true });
 const RecordModel = (0, mongoose_1.model)('Record_Labels', RecordLabelSchema);
 exports.default = RecordModel;

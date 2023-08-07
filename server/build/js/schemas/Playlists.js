@@ -15,16 +15,9 @@ const PlayListSchema = new mongoose_1.Schema({
         type: String
     },
     songs: {
-        type: Songs_1.SongsSchemaProtoType || [Songs_1.SongsSchemaProtoType],
+        type: [Songs_1.SongsSchemaProtoType],
         required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    modifiedAt: {
-        type: Date
     }
-});
+}, { timestamps: true });
 const PlayListModel = (0, mongoose_1.model)('Playlists', PlayListSchema);
 exports.default = PlayListModel;

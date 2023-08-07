@@ -4,24 +4,18 @@ import { RecordLabelInterface } from "./interfaces";
 const RecordLabelSchema = new Schema<RecordLabelInterface>({
     name:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     location:{
         type: String,
         required: true
     },
     directorsName:{
-        type:[String] || String,
+        type:[String],
         required: true
-    },
-    createdAt:{
-        type:Date,
-        default: Date.now
-    },
-    modifiedAt:{
-        type: Date
     }
-})
+}, {timestamps: true})
 
 const RecordModel = model<RecordLabelInterface>('Record_Labels', RecordLabelSchema);
 

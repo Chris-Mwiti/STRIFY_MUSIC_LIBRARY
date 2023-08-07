@@ -1,6 +1,7 @@
 import { Schema, model} from 'mongoose';
 import { ArtistsInterface } from './interfaces';
 
+
 const ArtistsShema = new Schema<ArtistsInterface>({
     name:{
         type: String,
@@ -8,7 +9,8 @@ const ArtistsShema = new Schema<ArtistsInterface>({
     },
     username:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password:{
         type: String,
@@ -16,11 +18,21 @@ const ArtistsShema = new Schema<ArtistsInterface>({
     },
     email:{
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        validate:{
+            validator:(email:string) => email.includes('@') && email.includes('.'),
+            message: ({value}) => `${value} is not a valid email`
+        }
     },
     phone:{
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        validate:{
+            validator:(phone: string) => phone.length == 10,
+            message: ({value}) => `${value} is not a valid phone number`
+        }
     },
     age:{
         type: Number,
@@ -32,15 +44,8 @@ const ArtistsShema = new Schema<ArtistsInterface>({
     },
     bio:{
         type: String
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    modifiedAt:{
-        type: Date
     }
-})
+},{timestamps: true})
 
 const ArtistModel = model<ArtistsInterface>('Artists',ArtistsShema);
 
