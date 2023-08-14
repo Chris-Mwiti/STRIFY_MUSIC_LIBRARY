@@ -24,7 +24,7 @@ interface SongsInterface {
     duration: string;
     label: string;
     file_path: string;
-    art_path: string;
+    art_path?: string;
 }
 
 interface GenreInterface {

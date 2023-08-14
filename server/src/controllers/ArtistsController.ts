@@ -1,4 +1,3 @@
-import { Query, QueryOpThatReturnsDocument, UpdateQuery } from "mongoose";
 import ResponseHandlers from "../helpers/modelResponseHandler";
 import trycatch from "../helpers/trycatch";
 import ArtistModel from "../schemas/Artists";
@@ -54,8 +53,9 @@ class ArtistsController{
         const deletedPersonQuery = await this.artistsModel.findByIdAndDelete(artistId,{returnDocument: "before"}).exec();
         const {data: deleteRes, err: deletingErr} = await trycatch<ArtistsInterface>(() => deletedPersonQuery?.save());
         if(deletingErr) return this.res.status(500).json({err: "The artist you are trying to delete does not exist"});
-        new ResponseHandlers<ArtistsInterface | null>(deleteRes, this.res);
+        new ResponseHandlers<ArtistsInterface | null>(deleteRes, this.res).deleteResponse();
     }
+
 }
 
 export default ArtistsController

@@ -15,13 +15,19 @@ class ResponseHandlers {
     }
     getResponse() {
         if (this.data == null) {
-            return this.res.status(200).json({ msg: "The data provide does not exist in the database" });
+            return this.res.status(404).json({ msg: "The data provide does not exist in the database" });
         }
         return this.res.status(200).json({ msg: "Success", data: this.data });
     }
     updateRespose() {
         if (this.data == null) {
-            return this.res.status(500).json({ err: "The data provided does not exist in the database" });
+            return this.res.status(404).json({ err: "The data provided does not exist in the database" });
+        }
+        return this.res.status(200).json({ msg: "Success", data: this.data });
+    }
+    deleteResponse() {
+        if (this.data == null) {
+            return this.res.status(404).json({ err: "The data provided does not exist in the database" });
         }
         return this.res.status(200).json({ msg: "Success", data: this.data });
     }

@@ -25,5 +25,4 @@ router.route('/:id')
         await artistController.deleteArtist();
     })
 
-
 export {router as ArtistRouter}

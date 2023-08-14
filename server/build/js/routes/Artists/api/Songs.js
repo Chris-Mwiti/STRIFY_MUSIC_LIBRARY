@@ -12,28 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const ErrorHandler_1 = __importDefault(require("./ErrorHandler"));
-function trycatch(func) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let data = null;
-        let err = null;
-        try {
-            const result = yield func();
-            data = result;
-        }
-        catch (error) {
-            console.log(error);
-            if (error instanceof ErrorHandler_1.default) {
-                err = {
-                    code: error.code,
-                    message: error.message
-                };
-            }
-            else {
-                err = "Unexpected Error Occured";
-            }
-        }
-        return { data, err };
-    });
-}
-exports.default = trycatch;
+exports.ArtistsSongsRouter = void 0;
+const express_1 = require("express");
+const SongsController_1 = __importDefault(require("../../../controllers/SongsController"));
+const uploader_1 = __importDefault(require("../../../middlewares/uploader"));
+const upload = (0, uploader_1.default)("songs");
+const router = (0, express_1.Router)();
+exports.ArtistsSongsRouter = router;
+router.route('/')
+    .post(upload.single('songs'), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const songsController = new SongsController_1.default(req, res);
+    songsController.addSong();
+}));

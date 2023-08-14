@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import appConfig from "./config/appConfig";
 import {ArtistRouter} from "./routes/admin/api/Artists";
+import { ArtistsSongsRouter } from "./routes/Artists/api/Songs";
+import { RecordLabelRouter } from "./routes/admin/api/RecordLabels";
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config();
@@ -24,6 +26,8 @@ app.use(cors({
 // Routes
 // Admin
 app.use('/admin/api/artists', ArtistRouter);
+app.use('/artist/api/songs', ArtistsSongsRouter);
+app.use('/admin/api/labels', RecordLabelRouter);
 
 // @TODO: check on how to store env varialble with escape characters
 appConfig(app,mongoose);

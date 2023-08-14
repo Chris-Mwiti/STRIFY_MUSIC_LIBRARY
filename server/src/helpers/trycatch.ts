@@ -1,3 +1,5 @@
+import CustomizedError, { CustomizedErrorInterface } from "./ErrorHandler";
+
 async function trycatch<DataType>(func: Function){
     let data = null;
     let err = null;
@@ -6,7 +8,14 @@ async function trycatch<DataType>(func: Function){
         data = result;
     }catch(error){
         console.log(error);
-        err = error
+        if(error instanceof CustomizedError){
+            err = {
+                code: error.code,
+                message: error.message
+            } 
+        }else{
+            err = "Unexpected Error Occured";
+        }
     }
 
     return {data,err}

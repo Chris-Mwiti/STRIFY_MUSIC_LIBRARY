@@ -71,7 +71,7 @@ class ArtistsController {
             const { data: deleteRes, err: deletingErr } = yield (0, trycatch_1.default)(() => deletedPersonQuery === null || deletedPersonQuery === void 0 ? void 0 : deletedPersonQuery.save());
             if (deletingErr)
                 return this.res.status(500).json({ err: "The artist you are trying to delete does not exist" });
-            new modelResponseHandler_1.default(deleteRes, this.res);
+            new modelResponseHandler_1.default(deleteRes, this.res).deleteResponse();
         });
     }
 }
